@@ -1,28 +1,165 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="wrapper" :class="[ theme == 'light' ? 'theme__light' : 'theme__dark' ]">
+      <div class="container wrapper__page"
+      :class="[ theme == 'light' ? 'theme__light' : 'theme__dark' ]">
+
+        <div class="container__sm">
+
+          <!-- Sidebar -->
+          <header class="header">
+            <h1>Todo app</h1>
+            <div class="btn__theme"
+            @click="changeTheme">
+              <img v-if="theme == 'light'" :src="require('@/assets/images/icon-sun.svg')" alt="icon sun">
+              <img v-if="theme == 'dark'" :src="require('@/assets/images/icon-moon.svg')" alt="icon moon">
+            </div>
+          </header>
+
+          <!-- Form user -->
+          <div class="wrapper__form">
+            <div class="form">
+              <input class="form__checkbox" 
+              type="checkbox"
+              disabled>
+              <input type="text" 
+              v-model="newTask"
+              placeholder="Create a new todo" 
+              @keyup.enter="createNewTask"
+              class="form__input">
+            </div>
+          </div>
+
+          <!-- Main -->
+          <main class="wrapper__main main">
+            
+            <!-- Top -->
+            <div class="main__top">
+              <input class="demo__checkbox"
+                    checked
+                    disabled
+                    type="checkbox">
+              <span class="demo__text">Complete online Javascript course</span>
+            </div>
+
+            <!-- Mid -->
+            <div class="main__mid">
+              <div v-for="(item, index) in itemsFiltered" :key="index" 
+                class="item">
+                <input class="item__checkbox" type="checkbox" v-model="item.completed">
+                <label class="item__text" :class="{completed : item.completed}">{{ item.name }}</label>
+              </div>
+            </div>
+
+            <div class="main__bot searchbar searchbar__lg">
+              <span class="searchbar__left">{{ items.length }} items</span>
+              <ul>
+                <li @click="filteredItems('all')">All</li>
+                <li @click="filteredItems('active')">Active</li>
+                <li @click="filteredItems('completed')">Completed</li>
+              </ul>
+              <span class="searchbar__right" @click="clearCompleted">Clear Completed</span>
+            </div>
+
+          </main>
+
+          <!-- Bot -->
+          <div class="searchbar searchbar__sm">
+            <!-- <span class="searchbar__left">{{ items.length }} items</span> -->
+            <ul>
+              <li @click="filteredItems('all')">All</li>
+              <li @click="filteredItems('active')">Active</li>
+              <li @click="filteredItems('completed')">Completed</li>
+            </ul>
+            <!-- <span class="searchbar__right" @click="clearCompleted">Clear Completed</span> -->
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+
+const tab = [
+  {
+    completed: false,
+    name: 'tache 1',
+  },
+   {
+    completed: true,
+    name: 'tache 2',
+  },
+   {
+    completed: false,
+    name: 'tache 3',
+  }
+]
 
 export default {
   name: 'App',
+  data() {
+    return {
+      theme: 'light',
+      newTask: '',
+      items: tab,
+      itemsFiltered: tab,
+      filtered: 'all'
+      
+    }
+  },
+  computed: {
+    // itemsFiltered() {
+    //   return this.items
+    // }
+  },
+  methods: {
+    filteredItems(filtre) {
+      let tab = []
+      if (filtre == 'all') {
+        tab = this.items
+      } else if (filtre == 'active') {
+        tab = this.items.filter( (item) => {
+          return item.completed == false
+        })
+      } else if (filtre == 'completed') {
+        tab = this.items.filter( (item) => {
+          return item.completed == true
+        })
+      }
+      this.itemsFiltered = tab
+    },
+    changeTheme() {
+      this.theme == 'light' ? this.theme = 'dark' : this.theme = 'light';
+      console.log(this.theme)
+    },
+    createNewTask() {
+      if (this.newTask !== '') {
+        let task = {};
+        task.completed = false;
+        task.name = this.newTask
+        this.items.push(task);
+        console.log(this.items)
+        this.newTask = ''
+      } else {
+        console.log('new task ........')
+      }
+    },
+    clearCompleted() {
+      console.log('test')
+      this.items = this.items.filter( (item) => {
+          return item.completed !== true
+      } )
+    }
+  },
   components: {
-    HelloWorld
+ 
   }
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style src="@/assets/scss/app.scss" lang="scss"></style>

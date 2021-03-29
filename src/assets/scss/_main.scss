@@ -1,0 +1,35 @@
+.wrapper__main {
+    min-height: 200px;
+    margin-top: 25px;
+    padding: 10px;
+
+    font-size: 0.9rem;
+
+    border-radius: 5px;
+}
+
+.main__top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .demo__text {
+        text-decoration: line-through;
+    }
+}
+
+.item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid $l-dark-grayish-blue;
+
+    &__text.completed {
+        text-decoration: line-through;
+    }
+}
+
+
+

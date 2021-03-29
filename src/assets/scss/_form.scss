@@ -1,0 +1,29 @@
+// ----- Formulaire
+.wrapper__form {
+    // margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form {
+    width: 100%;
+    padding: 5px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    input[type=text] {
+        font-size: 0.9rem;
+        // color: $dark-grayish-blue;
+        border: none;
+        outline: none;
+    }
+
+    input[type=text]:focus {
+        border: none;
+        outline: none;
+    }
+   
+}
+

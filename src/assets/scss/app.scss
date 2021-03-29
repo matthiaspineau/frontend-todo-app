@@ -1,0 +1,50 @@
+@import '_reboot.scss';
+@import '_grid_layout.scss';
+@import '_layout.scss';
+@import '_fonts.scss';
+@import '_colors.scss';
+@import '_header.scss';
+@import '_sidebar.scss';
+@import '_page.scss';
+@import '_form.scss';
+@import '_main.scss';
+@import '_change_theme.scss';
+
+#app {
+    font-family: $font-josefin-regular;
+}
+
+.btn__theme {
+    cursor: pointer;
+}
+
+.wrapper__page {
+    min-height: 600px;
+}
+
+
+// ----- input[type=checkbox]
+input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    position: relative;
+    background: linear-gradient(to left top, hsl(280, 87%, 65%) ,hsl(192, 100%, 67%) );
+    
+}
+
+label {
+    margin: 0;
+}

@@ -1,0 +1,65 @@
+// ---------------
+
+.searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 0px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+
+    
+    ul {
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        display: inline-block;
+        padding: 0 10px;
+        list-style-type: none;
+        font-weight: 700;
+        // font-family: $font-josefin-bold;
+        cursor: pointer;
+
+        &:hover {
+            color: $bright-blue;
+        }
+    }
+
+    .searchbar__right  {
+        cursor: pointer;
+    }
+
+    &__lg {
+        justify-content: space-between;
+
+        ul {
+            display: none;
+        }
+    }
+    
+
+    @media (min-width: 1400px) {
+
+        justify-content: space-between;
+
+        &__sm {
+            display: none;
+        }
+
+        &__lg {
+    
+            ul {
+                display: block;
+            }
+        }
+
+        .searchbar__left, .searchbar__right {
+            display: block;
+        }
+    }
+}
+
+
