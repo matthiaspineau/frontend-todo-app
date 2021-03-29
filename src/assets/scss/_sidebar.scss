@@ -4,8 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    padding: 10px 0px;
+    
+    padding: 15px 15px;
     font-size: 0.9rem;
     border-radius: 5px;
 
@@ -26,6 +26,10 @@
         &:hover {
             color: $bright-blue;
         }
+    }
+
+    li.active {
+        color: $bright-blue;
     }
 
     .searchbar__right  {
@@ -61,5 +65,10 @@
         }
     }
 }
+
+.searchbar__sm {
+    margin-top: 20px;
+}
+
 
 

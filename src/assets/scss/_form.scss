@@ -1,13 +1,14 @@
 // ----- Formulaire
 .wrapper__form {
     // margin-top: 20px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 5px;
 }
 
 .form {
     width: 100%;
-    padding: 5px;
+    // padding: 5px;
 
     display: flex;
     justify-content: flex-start;

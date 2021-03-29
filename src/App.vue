@@ -44,7 +44,7 @@
 
             <!-- Mid -->
             <div class="main__mid">
-              <div v-for="(item, index) in itemsFiltered" :key="index" 
+              <div v-for="(item, index) in filtreItemsComputed" :key="index" 
                 class="item">
                 <input class="item__checkbox" type="checkbox" v-model="item.completed">
                 <label class="item__text" :class="{completed : item.completed}">{{ item.name }}</label>
@@ -52,11 +52,11 @@
             </div>
 
             <div class="main__bot searchbar searchbar__lg">
-              <span class="searchbar__left">{{ items.length }} items</span>
+              <span class="searchbar__left">{{ filtreItemsComputed.length }} items</span>
               <ul>
-                <li @click="filteredItems('all')">All</li>
-                <li @click="filteredItems('active')">Active</li>
-                <li @click="filteredItems('completed')">Completed</li>
+                <li @click="filteredItems('all')" :class="{ active : filtered == 'all' }">All</li>
+                <li @click="filteredItems('active')" :class="{ active : filtered == 'active' }">Active</li>
+                <li @click="filteredItems('completed')" :class="{ active : filtered == 'completed' }">Completed</li>
               </ul>
               <span class="searchbar__right" @click="clearCompleted">Clear Completed</span>
             </div>
@@ -65,13 +65,11 @@
 
           <!-- Bot -->
           <div class="searchbar searchbar__sm">
-            <!-- <span class="searchbar__left">{{ items.length }} items</span> -->
             <ul>
-              <li @click="filteredItems('all')">All</li>
-              <li @click="filteredItems('active')">Active</li>
-              <li @click="filteredItems('completed')">Completed</li>
+              <li @click="filteredItems('all')" :class="{ active : filtered == 'all' }">All</li>
+              <li @click="filteredItems('active')" :class="{ active : filtered == 'active' }">Active</li>
+              <li @click="filteredItems('completed')" :class="{ active : filtered == 'completed' }">Completed</li>
             </ul>
-            <!-- <span class="searchbar__right" @click="clearCompleted">Clear Completed</span> -->
           </div>
 
 
@@ -108,53 +106,57 @@ export default {
       newTask: '',
       items: tab,
       itemsFiltered: tab,
-      filtered: 'all'
-      
+      filtered: 'all',
     }
   },
   computed: {
-    // itemsFiltered() {
-    //   return this.items
-    // }
+    filtreItemsComputed: {
+
+      get: function () {
+        let tab = []
+        if (this.filtered == 'all') {
+          tab = this.items
+        } else if (this.filtered == 'active') {
+          tab = this.items.filter( (item) => {
+            return item.completed == false
+          })
+        } else if (this.filtered == 'completed') {
+          tab = this.items.filter( (item) => {
+            return item.completed == true
+          })
+        }
+        return tab
+      },
+      set(newTab) {
+        this.items = newTab
+      }
+      
+    },
   },
   methods: {
     filteredItems(filtre) {
-      let tab = []
-      if (filtre == 'all') {
-        tab = this.items
-      } else if (filtre == 'active') {
-        tab = this.items.filter( (item) => {
-          return item.completed == false
-        })
-      } else if (filtre == 'completed') {
-        tab = this.items.filter( (item) => {
-          return item.completed == true
-        })
-      }
-      this.itemsFiltered = tab
+      this.filtered = filtre
     },
-    changeTheme() {
-      this.theme == 'light' ? this.theme = 'dark' : this.theme = 'light';
-      console.log(this.theme)
+     clearCompleted() {
+      console.log('clear completed')
+      this.filtreItemsComputed = this.items.filter( (item) => {
+          return item.completed !== true
+      })
+
     },
     createNewTask() {
       if (this.newTask !== '') {
         let task = {};
         task.completed = false;
-        task.name = this.newTask
+        task.name = this.newTask;
         this.items.push(task);
-        console.log(this.items)
-        this.newTask = ''
-      } else {
-        console.log('new task ........')
-      }
+        console.log(this.items);
+        this.newTask = '';
+      } 
     },
-    clearCompleted() {
-      console.log('test')
-      this.items = this.items.filter( (item) => {
-          return item.completed !== true
-      } )
-    }
+    changeTheme() {
+      this.theme == 'light' ? this.theme = 'dark' : this.theme = 'light';
+    },
   },
   components: {
  

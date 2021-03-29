@@ -32,6 +32,16 @@
 
     .wrapper__main {
         background: #fff;
+        box-shadow: 0px 25px 45px $l-dark-grayish-blue;
+        // box-shadow: 0px 0px 45px $l-light-grayish-blue;
+    }
+
+    .main__top {
+        border-color: $l-light-grayish-blue;
+    }
+
+    .item {
+        border-color: $l-light-grayish-blue;
     }
 
     .demo__text {
@@ -40,6 +50,19 @@
 
     .searchbar__sm {
         background: #fff;
+    }
+
+    
+    .searchbar {
+        color: $d-dark-grayish-blue;
+
+        li:hover {
+            color: $l-very-dark-grayish-blue;
+        }
+    }
+
+    .searchbar__right:hover {
+        color: $l-very-dark-grayish-blue;
     }
 
 }
@@ -66,12 +89,46 @@
             
     }
 
+    .main__top {
+        border-color: $d-very-dark-grayish-blue;
+    }
+
     .wrapper__main{
         background: $d-very-dark-desaturated-blue;
+        box-shadow: 0px 25px 45px $d-very-dark-blue;
     }
 
     .searchbar__sm {
         background: $d-very-dark-desaturated-blue;
+    }
+
+    .demo__text {
+        color: $d-dark-grayish-blue;
+        
+    }
+
+    .item {
+        color: $d-light-grayish-blue;
+        border-color: $d-very-dark-grayish-blue;
+
+        &__text.completed {
+            color: $d-dark-grayish-blue;
+
+        }
+    }
+
+    
+
+    .searchbar {
+        color: $d-dark-grayish-blue;
+
+        li:hover {
+            color: $d-light-grayish-blue;
+        }
+    }
+
+    .searchbar__right:hover {
+        color: $d-light-grayish-blue;
     }
     
 
