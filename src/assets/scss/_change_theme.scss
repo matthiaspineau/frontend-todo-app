@@ -11,7 +11,6 @@
 }
 
 
-
 .wrapper__page.theme__light {
     background: url('../images/bg-mobile-light.jpg') $l-very-light-gray;
     background-repeat: no-repeat;
@@ -24,7 +23,6 @@
     .wrapper__form {
         background: #fff;
     
-
         input[type=text] {
             color: $l-dark-grayish-blue;
         }
@@ -36,6 +34,14 @@
         // box-shadow: 0px 0px 45px $l-light-grayish-blue;
     }
 
+    .label {
+        color: $l-very-dark-grayish-blue;
+    }
+
+    .label.completed {
+        color: $l-light-grayish-blue;
+    }
+
     .main__top {
         border-color: $l-light-grayish-blue;
     }
@@ -44,14 +50,9 @@
         border-color: $l-light-grayish-blue;
     }
 
-    .demo__text {
-        color: $l-light-grayish-blue;
-    }
-
     .searchbar__sm {
         background: #fff;
     }
-
     
     .searchbar {
         color: $d-dark-grayish-blue;
@@ -79,12 +80,9 @@
     .wrapper__form {
         background: $d-very-dark-desaturated-blue;
 
-        .form__input {
-            background: $d-very-dark-desaturated-blue;
-        }
-
         input[type=text] {
             color: $d-dark-grayish-blue;
+            background: $d-very-dark-desaturated-blue;
         }
             
     }
@@ -92,6 +90,14 @@
     .main__top {
         border-color: $d-very-dark-grayish-blue;
     }
+
+    .label {
+        color: $d-light-grayish-blue;
+    }
+
+    .label.completed {
+        color: $d-very-dark-grayish-blue;
+    } 
 
     .wrapper__main{
         background: $d-very-dark-desaturated-blue;
@@ -102,23 +108,11 @@
         background: $d-very-dark-desaturated-blue;
     }
 
-    .demo__text {
-        color: $d-dark-grayish-blue;
-        
-    }
-
     .item {
-        color: $d-light-grayish-blue;
         border-color: $d-very-dark-grayish-blue;
-
-        &__text.completed {
-            color: $d-dark-grayish-blue;
-
-        }
     }
 
     
-
     .searchbar {
         color: $d-dark-grayish-blue;
 

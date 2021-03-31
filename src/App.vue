@@ -19,14 +19,11 @@
           <!-- Form user -->
           <div class="wrapper__form">
             <div class="form">
-              <input class="form__checkbox" 
-              type="checkbox"
-              disabled>
+              <input type="checkbox" disabled>
               <input type="text" 
-              v-model="newTask"
-              placeholder="Create a new todo" 
-              @keyup.enter="createNewTask"
-              class="form__input">
+                v-model="newTask"
+                placeholder="Create a new todo" 
+                @keyup.enter="createNewTask">
             </div>
           </div>
 
@@ -35,19 +32,20 @@
             
             <!-- Top -->
             <div class="main__top">
-              <input class="demo__checkbox"
-                    checked
-                    disabled
-                    type="checkbox">
-              <span class="demo__text">Complete online Javascript course</span>
+              <input type="checkbox" checked disabled>
+              <label class="label completed">Complete online Javascript course</label>
             </div>
 
             <!-- Mid -->
             <div class="main__mid">
-              <div v-for="(item, index) in filtreItemsComputed" :key="index" 
-                class="item">
-                <input class="item__checkbox" type="checkbox" v-model="item.completed">
-                <label class="item__text" :class="{completed : item.completed}">{{ item.name }}</label>
+              <div v-for="(item, index) in filtreItemsComputed" 
+                  :key="index" 
+                  class="item">
+                <input type="checkbox" v-model="item.completed">
+                <label class="label" :class="{completed : item.completed}">{{ item.name }}</label>
+                <img class="img__cross" 
+                @click="removeTask(item)"
+                :src="require('@/assets/images/icon-cross.svg')" alt="image cross">
               </div>
             </div>
 
@@ -81,7 +79,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 
 const tab = [
   {
@@ -137,12 +134,16 @@ export default {
     filteredItems(filtre) {
       this.filtered = filtre
     },
-     clearCompleted() {
+    removeTask(itemRemove) {
+      this.filtreItemsComputed = this.items.filter( (item) => {
+          return item !== itemRemove
+      })
+    },
+    clearCompleted() {
       console.log('clear completed')
       this.filtreItemsComputed = this.items.filter( (item) => {
           return item.completed !== true
       })
-
     },
     createNewTask() {
       if (this.newTask !== '') {

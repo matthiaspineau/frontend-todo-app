@@ -1,10 +1,7 @@
 .wrapper__main {
     min-height: 200px;
     margin-top: 25px;
-    // padding: 10px;
-
     font-size: 0.9rem;
-
     border-radius: 5px;
 }
 
@@ -13,16 +10,17 @@
     justify-content: flex-start;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid;
-    
-
-    .demo__text {
-        text-decoration: line-through;
-        font-size: 0.9rem;
-    }
+    border-bottom: 1px solid; 
 }
 
+.label.completed {
+    text-decoration: line-through;
+}
+
+
+
 .item {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -31,10 +29,13 @@
     border-bottom: 1px solid;
     // overflow-x: hidden;
     padding-right: 10px;
+}
 
-    &__text.completed {
-        text-decoration: line-through;
-    }
+.img__cross {
+   position: absolute;
+   top: calc(50% - 10px);
+   right: calc(15px);
+   cursor: pointer;
 }
 
 
